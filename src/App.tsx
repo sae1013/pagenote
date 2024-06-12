@@ -4,6 +4,7 @@
 import Logo from "./Logo";
 import QuillEditor from "../content-script/src/editor/QuillEditor";
 import { App as NoteApp } from "../content-script/src/App";
+import Button from "./components/Button";
 import "./App.css";
 const openNote = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -15,18 +16,32 @@ const openNote = () => {
 };
 function App() {
   return (
-    <div>
-      <div>ghehe</div>
-      <NoteApp></NoteApp>
-    </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <Logo className="App-logo" id="App-logo" title="React logo" />
-    //     <p>Hello, World!</p>
-    //     <p>I'm a Chrome Extension Popup!</p>
-    //     <button onClick={openNote}>노트열기</button>
-    //   </header>
+    // <div>
+    //   <NoteApp></NoteApp>
     // </div>
+    <div className="container">
+      <header className="container__header">
+        {/* <span>Every Note</span> */}
+      </header>
+      <main className="contents"></main>
+      <footer
+        style={{
+          // position: "absolute",
+          // bottom: 0,
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "1rem 1rem",
+        }}
+      >
+        <Button variant="dark" onClick={openNote}>
+          View Notes
+        </Button>
+        <Button variant="primary" onClick={openNote}>
+          Open Note
+        </Button>
+      </footer>
+    </div>
   );
 }
 
