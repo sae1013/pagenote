@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:watch": "tsc && vite build --watch",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "quill": "2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "web-vitals": "^3.0.3"
   },
   "devDependencies": {

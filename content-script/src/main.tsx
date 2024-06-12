@@ -1,29 +1,34 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./main.css";
-import App from "./App";
+import { App } from "./App";
 
-const body = document.querySelector("body");
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (isExistDOM()) return;
+  renderDOM();
+  sendResponse({ response: "Content script received the message" });
+});
 
-const app = document.createElement("div");
+const isExistDOM = () => {
+  const root = document.getElementById("note-root");
+  if (root) return true;
+  return false;
+};
+const renderDOM = () => {
+  const body = document.querySelector("body");
+  const app = document.createElement("div");
 
-app.id = "root";
+  app.id = "note-root";
+  if (body) {
+    body.prepend(app);
+  }
 
-// Make sure the element that you want to mount the app to has loaded. You can
-// also use `append` or insert the app using another method:
-// https://developer.mozilla.org/en-US/docs/Web/API/Element#methods
-//
-// Also control when the content script is injected from the manifest.json:
-// https://developer.chrome.com/docs/extensions/mv3/content_scripts/#run_time
-if (body) {
-  body.prepend(app);
-}
+  const container = document.getElementById("note-root");
+  const root = createRoot(container!);
 
-const container = document.getElementById("root");
-const root = createRoot(container!);
-
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+};

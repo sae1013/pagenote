@@ -1,19 +1,27 @@
 /// <reference types="chrome" />
 /// <reference types="vite-plugin-svgr/client" />
 
-import Logo from "./Logo";
-import "./App.css";
+import styled from "@emotion/styled";
+import Note from "./components/Note";
 
+const Container = styled.div`
+  position: fixed;
+  top: 5rem;
+
+  right: 1rem;
+  width: 420px;
+  height: 800px;
+  background-color: white;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  z-index: 100000;
+`;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo className="App-logo" id="App-logo" title="React logo" />
-        <p>Hello, World!</p>
-        <p>I'm a Chrome Extension Content Script!</p>
-      </header>
-    </div>
+    <Container>
+      <Note></Note>
+    </Container>
   );
 }
 
-export default App;
+export { App };

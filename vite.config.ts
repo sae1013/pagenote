@@ -6,6 +6,11 @@ import manifest from "./manifest.json";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    watch: {
+      usePolling: true, // 파일 시스템 이벤트 감지를 위한 폴링 사용 (필요한 경우)
+    },
+  },
   plugins: [
     react(),
     svgr({
