@@ -6,13 +6,14 @@ import QuillEditor from "../content-script/src/editor/QuillEditor";
 import { App as NoteApp } from "../content-script/src/App";
 import Button from "./components/Button";
 import "./App.css";
+
 const openNote = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     if (tabs[0].id) {
-      chrome.tabs.sendMessage(tabs[0].id, { message: "EXECUTE_NOTE" });
+      chrome.tabs.sendMessage(tabs[0].id, { type: "EXECUTE_NOTE" });
     }
   });
-  window.close();
+  // window.close();
 };
 function App() {
   return (
@@ -26,8 +27,6 @@ function App() {
       <main className="contents"></main>
       <footer
         style={{
-          // position: "absolute",
-          // bottom: 0,
           width: "100%",
           display: "flex",
           justifyContent: "space-between",

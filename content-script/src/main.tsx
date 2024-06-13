@@ -3,10 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./main.css";
 import { App } from "./App";
 
+console.log("Content script loaded");
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (isExistDOM()) return;
-  renderDOM();
-  sendResponse({ response: "Content script received the message" });
+  if (message.type === "EXECUTE_NOTE") {
+    if (isExistDOM()) return;
+    renderDOM();
+    sendResponse({ response: "Content script received the message" });
+  }
 });
 
 const isExistDOM = () => {

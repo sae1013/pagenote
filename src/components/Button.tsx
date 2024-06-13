@@ -50,7 +50,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   :hover {
     opacity: 0.7;
   }
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   ${(props) => props.variant && buttonColor[props.variant]};
   ${(props) => props.size && buttonSize[props.size]};
 

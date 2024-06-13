@@ -1,12 +1,12 @@
 #note-ql-root {
   height: 100%;
+}
 
-  .ql-toolbar {
-    height: 70px;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-  }
-  .ql-container {
-    height: calc(800px - 70px);
-  }
+#note-ql-root .ql-toolbar {
+  height: 70px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+#note-ql-root .ql-container {
+  height: calc(800px - 70px);
 }
