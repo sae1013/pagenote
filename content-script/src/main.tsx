@@ -2,10 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./main.css";
 import { App } from "./App";
+import { messageType } from "../../message/messages";
 
 console.log("Content script loaded");
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.type === "EXECUTE_NOTE") {
+  if (message.type === messageType.EXECUTE_NOTE) {
     if (isExistDOM()) return;
     renderDOM();
     sendResponse({ response: "Content script received the message" });

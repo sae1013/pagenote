@@ -1,6 +1,7 @@
 import React, { SetStateAction, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import QuillEditor from "../editor/QuillEditor";
+import Button from "../../../src/components/Button";
 
 const NoteFooter = styled.div`
   width: 100%;
@@ -21,9 +22,24 @@ const NoteFooter = styled.div`
 `;
 
 const Note = () => {
+  const [contents, setContents] = useState("");
+  const handleSaveContents = () => {
+    console.log(contents);
+  };
   return (
     <div>
-      <QuillEditor></QuillEditor>
+      <QuillEditor onChange={setContents}></QuillEditor>
+      <Button
+        onClick={handleSaveContents}
+        variant="primary"
+        styleProps={{
+          position: "absolute",
+          bottom: "2rem",
+          right: "1rem",
+        }}
+      >
+        Save
+      </Button>
       <NoteFooter>
         <a>asdf</a>
         <p>Auto saved</p>

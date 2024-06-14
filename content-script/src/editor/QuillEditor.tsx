@@ -5,10 +5,17 @@ import "./quill.style.css";
 
 interface QuillEditorProps {
   readOnly?: boolean;
+  children?: React.ReactNode;
+  onChange?: React.Dispatch<React.SetStateAction<string>>;
 }
-function QuillEditor({ readOnly = false, ...props }: QuillEditorProps) {
+function QuillEditor({
+  readOnly = false,
+  children,
+  onChange,
+  ...props
+}: QuillEditorProps) {
   const [value, setValue] = useState("");
-  const [content, setContent] = useState("");
+
   const handleImageUpload = (e: React.MouseEvent) => {
     console.log(e);
   };
@@ -36,14 +43,17 @@ function QuillEditor({ readOnly = false, ...props }: QuillEditorProps) {
   );
 
   return (
-    <ReactQuill
-      id="note-ql-root"
-      readOnly={false}
-      theme="snow"
-      value={content}
-      onChange={setContent}
-      modules={modules}
-    />
+    <>
+      <ReactQuill
+        id="note-ql-root"
+        readOnly={false}
+        theme="snow"
+        // value={}
+        onChange={onChange}
+        modules={modules}
+      />
+      {children}
+    </>
   );
 }
 

@@ -7,7 +7,6 @@ import Note from "./components/Note";
 const Container = styled.div`
   position: fixed;
   top: 5rem;
-
   right: 1rem;
   width: 420px;
   height: 800px;
