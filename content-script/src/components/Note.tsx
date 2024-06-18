@@ -2,6 +2,7 @@ import React, { SetStateAction, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import QuillEditor from "../editor/QuillEditor";
 import Button from "../../../src/components/Button";
+import axios from "axios";
 
 const NoteFooter = styled.div`
   width: 100%;
@@ -23,14 +24,28 @@ const NoteFooter = styled.div`
 
 const Note = () => {
   const [contents, setContents] = useState("");
-  const handleSaveContents = () => {
-    console.log(contents);
+  const [noteId, setNoteId] = useState(null);
+
+  const handleSaveNotes = async () => {
+    if (!noteId) {
+      const result = await axios.post("http://localhost:3000/notes", {
+        writer: "sae1013",
+        contents,
+      });
+      setNoteId(result.data._id);
+    } else {
+      const result = await axios.patch("http://localhost:3000/notes", {
+        _id: noteId,
+        contents,
+        writer: "sae1013",
+      });
+    }
   };
   return (
     <div>
       <QuillEditor onChange={setContents}></QuillEditor>
       <Button
-        onClick={handleSaveContents}
+        onClick={handleSaveNotes}
         variant="primary"
         styleProps={{
           position: "absolute",
