@@ -7,6 +7,7 @@ import { App as NoteApp } from "../content-script/src/App";
 import Button from "./components/Button";
 import "./App.css";
 import { messageType } from "../message/messages";
+import { App as HomeApp } from "../pagenote-script/src/App";
 
 const openNote = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -19,8 +20,11 @@ const openNote = () => {
 function App() {
   return (
     <div>
-      <NoteApp></NoteApp>
+      <HomeApp></HomeApp>
     </div>
+    // <div>
+    //   <NoteApp></NoteApp>
+    // </div>
     // <div className="container">
     //   <header className="container__header">
     //     {/* <span>Every Note</span> */}

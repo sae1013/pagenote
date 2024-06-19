@@ -1,8 +1,15 @@
-import React, { SetStateAction, useRef, useState } from "react";
+import React, {
+  SetStateAction,
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import styled from "@emotion/styled";
 import QuillEditor from "../editor/QuillEditor";
 import Button from "../../../src/components/Button";
 import axios from "axios";
+import { debounce } from "../utils/debounce";
 
 const NoteFooter = styled.div`
   width: 100%;
@@ -23,29 +30,40 @@ const NoteFooter = styled.div`
 `;
 
 const Note = () => {
-  const [contents, setContents] = useState("");
-  const [noteId, setNoteId] = useState(null);
+  const [noteId, setNoteId] = useState<string | null>(null);
 
-  const handleSaveNotes = async () => {
-    if (!noteId) {
-      const result = await axios.post("http://localhost:3000/notes", {
-        writer: "sae1013",
-        contents,
-      });
-      setNoteId(result.data._id);
-    } else {
-      const result = await axios.patch("http://localhost:3000/notes", {
-        _id: noteId,
-        contents,
-        writer: "sae1013",
-      });
-    }
+  const handleClickSave = () => {
+    handleSaveNotes("contents");
   };
+
+  const handleSaveNotes = useCallback(
+    async (contents: string) => {
+      if (!noteId) {
+        const result = await axios.post("http://localhost:3000/notes", {
+          writer: "sae1013",
+          contents,
+        });
+        setNoteId(result.data._id);
+      } else {
+        await axios.patch("http://localhost:3000/notes", {
+          _id: noteId,
+          contents,
+          writer: "sae1013",
+        });
+        console.log("UPDATE!");
+      }
+    },
+    [noteId]
+  );
+  const debouncedSaveNotes = useCallback(debounce(handleSaveNotes, 1000 * 3), [
+    noteId,
+  ]);
+
   return (
     <div>
-      <QuillEditor onChange={setContents}></QuillEditor>
+      <QuillEditor onChange={debouncedSaveNotes}></QuillEditor>
       <Button
-        onClick={handleSaveNotes}
+        onClick={() => handleClickSave}
         variant="primary"
         styleProps={{
           position: "absolute",

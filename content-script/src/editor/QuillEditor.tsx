@@ -6,7 +6,7 @@ import "./quill.style.css";
 interface QuillEditorProps {
   readOnly?: boolean;
   children?: React.ReactNode;
-  onChange?: React.Dispatch<React.SetStateAction<string>>;
+  onChange?: (...args: any) => any;
 }
 function QuillEditor({
   readOnly = false,
