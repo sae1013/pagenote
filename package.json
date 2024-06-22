@@ -1,0 +1,10 @@
+{
+  "name": "mono-pagenote",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "workspaces": [
+    "web_app",
+    "chrome_app"
+  ]
+}
