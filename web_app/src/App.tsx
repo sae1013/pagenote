@@ -4,6 +4,9 @@ import Folder from "./components/Folder";
 import NoteList from "./components/NoteList";
 import Header from "./components/Header";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { router } from "./routes";
+import LoginPage from "./pages/LoginPage";
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -31,19 +34,30 @@ const Contents = styled.section`
   overflow-y: scroll;
 `;
 
+const RootLayout = styled.div``;
 function App() {
   return (
-    <HomeContainer>
+    <BrowserRouter>
       <Header></Header>
-      <HomeMain>
-        <SideBar></SideBar>
-        <Contents>
-          <Folder></Folder>
-          <NoteList></NoteList>
-        </Contents>
-      </HomeMain>
-    </HomeContainer>
+      <RootLayout>
+        <Routes>
+          <Route path="/" Component={App}></Route>
+          <Route path="login" Component={LoginPage}></Route>
+        </Routes>
+      </RootLayout>
+    </BrowserRouter>
+
+    // <HomeContainer>
+    //   <Header></Header>
+    //   <HomeMain>
+    //     <SideBar></SideBar>
+    //     <Contents>
+    //       <Folder></Folder>
+    //       <NoteList></NoteList>
+    //     </Contents>
+    //   </HomeMain>
+    // </HomeContainer>
   );
 }
 
-export { App };
+export default App;
