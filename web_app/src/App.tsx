@@ -5,8 +5,8 @@ import NoteList from "./components/NoteList";
 import Header from "./components/Header";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { router } from "./routes";
 import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 const HomeContainer = styled.div`
   width: 100%;
@@ -35,28 +35,18 @@ const Contents = styled.section`
 `;
 
 const RootLayout = styled.div``;
+
 function App() {
   return (
     <BrowserRouter>
-      <Header></Header>
+      <Header />
       <RootLayout>
         <Routes>
-          <Route path="/" Component={App}></Route>
-          <Route path="login" Component={LoginPage}></Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
-
-    // <HomeContainer>
-    //   <Header></Header>
-    //   <HomeMain>
-    //     <SideBar></SideBar>
-    //     <Contents>
-    //       <Folder></Folder>
-    //       <NoteList></NoteList>
-    //     </Contents>
-    //   </HomeMain>
-    // </HomeContainer>
   );
 }
 

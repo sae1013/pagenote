@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Button from "./Button";
+import { Button } from "./Button";
 import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
@@ -9,15 +9,20 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 `;
+
 function Header() {
   const handleLogin = () => {};
   return (
     <Container>
       <Button
         styleProps={{
-          marginLeft: "auto",
-          marginRight: "1rem",
-          fontSize: "1.2rem",
+          button: {
+            marginLeft: "auto",
+            marginRight: "1rem",
+          },
+          text: {
+            fontSize: "1.2rem",
+          },
         }}
         onClick={handleLogin}
       >

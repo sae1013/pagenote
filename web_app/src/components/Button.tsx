@@ -1,12 +1,35 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import { IconType } from "react-icons";
 
 interface StyledButtonProps {
   size?: "small" | "medium" | "large" | "full";
-  styleProps?: React.CSSProperties;
+  // styleProps?: React.CSSProperties;
+  styleProps?: {
+    button?: React.CSSProperties;
+    text?: React.CSSProperties;
+  };
   outline?: boolean;
   variant?: "primary" | "secondary" | "dark";
+}
+
+interface StyledIconButtonProps extends StyledButtonProps {
+  iconPosition: "left" | "right";
+  styleProps?: {
+    button?: React.CSSProperties;
+    icon?: React.CSSProperties;
+  };
+}
+interface ButtonProps extends StyledButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+interface IconButtonProps extends StyledIconButtonProps {
+  Icon: IconType;
+  children: React.ReactNode;
+  onClick: () => void;
 }
 
 export const buttonSize = {
@@ -54,16 +77,38 @@ const StyledButton = styled.button<StyledButtonProps>`
   ${(props) => props.variant && buttonColor[props.variant]};
   ${(props) => props.size && buttonSize[props.size]};
 
-  ${(props) => props.styleProps && css({ ...props.styleProps })};
+  ${(props) => props.styleProps && css({ ...props.styleProps.button })};
+
+  > span {
+    ${(props) => props.styleProps?.text && css({ ...props.styleProps.text })}
+  }
 `;
 
-interface ButtonProps extends StyledButtonProps {
-  children: React.ReactNode;
-  onClick: () => void;
-}
+const StyledIconButton = styled(StyledButton)<StyledIconButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > svg {
+    width: 25px;
+    height: 25px;
+    ${(props) => props.styleProps?.icon && css({ ...props.styleProps.icon })}
+  }
+  > span {
+    margin-left: 2rem;
+  }
+`;
 
 function Button({ children, ...props }: ButtonProps) {
-  return <StyledButton {...props}>{children}</StyledButton>;
+  return <StyledButton {...props}>{<span>{children}</span>}</StyledButton>;
 }
 
-export default Button;
+function IconButton({ children, Icon, ...props }: IconButtonProps) {
+  return (
+    <StyledIconButton {...props}>
+      <Icon />
+      <span>{children}</span>
+    </StyledIconButton>
+  );
+}
+export { Button, IconButton };

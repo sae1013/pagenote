@@ -7,12 +7,88 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 // import Button from "../components/base/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { IconButton } from "../components/Button";
 
+const Container = styled.div`
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+`;
+
+const SideBar = styled.section`
+  display: none;
+  align-items: stretch;
+
+  @media (min-width: "960px") {
+    display: block;
+    width: 40rem;
+  }
+`;
+
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const Content = styled.section`
+  padding: 0 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 960px) and (max-width: 1199px) {
+    padding-left: 15%;
+  }
+  @media (min-width: 1200px) {
+    padding-left: 180px;
+  }
+`;
+
+const AuthContent = styled.div`
+  max-width: 416px;
+  @media (min-width: 1200px) {
+    margin: 0 0 0;
+  }
+`;
+
+const AuthContentTitle = styled.h2`
+  font-size: 29px;
+  font-weight: 800;
+  margin-bottom: 40px;
+`;
 function LoginPage() {
-  const navigate = useNavigate();
-
   return (
-    <div>hello</div>
+    <Container>
+      <IconButton
+        Icon={FcGoogle}
+        iconPosition="left"
+        onClick={() => {}}
+        styleProps={{
+          icon: {},
+        }}
+      >
+        Google Login
+      </IconButton>
+      {/* <SideBar>
+        <Video></Video>
+      </SideBar>
+      <Content>
+        <AuthContent>
+          <AuthContentTitle />
+          <button></button>
+          <hr></hr>
+          <button></button>
+        </AuthContent>
+        <div>
+          <button></button>
+        </div>
+      </Content> */}
+    </Container>
     // <div className={styles.login}>
     //   <section className={styles["login--sidebar"]}>
     //     <video autoPlay muted loop>

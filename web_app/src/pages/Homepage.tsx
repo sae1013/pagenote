@@ -30,10 +30,9 @@ const Contents = styled.section`
   overflow-y: scroll;
 `;
 
-function Homepage() {
+function HomePage() {
   return (
     <HomeContainer>
-      <Header></Header>
       <HomeMain>
         <SideBar></SideBar>
         <Contents>
@@ -45,4 +44,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;
