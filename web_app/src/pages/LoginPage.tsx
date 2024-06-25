@@ -1,149 +1,116 @@
 import React from "react";
-
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
-// import IconButton from "../components/base/IconButton";
-// import Divider from "../components/base/Divider";
-// import Button from "../components/base/Button";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import { IconButton } from "../components/Button";
+import { Button } from "../components/Button";
+import LogoImage from "../assets/logo.png";
 
 const Container = styled.div`
-  background-color: #fff;
-  width: 100vw;
+  max-width: 100%;
   height: 100vh;
+  background-color: #fff5e1;
   display: flex;
-  align-items: stretch;
-`;
-
-const SideBar = styled.section`
-  display: none;
-  align-items: stretch;
-
-  @media (min-width: "960px") {
-    display: block;
-    width: 40rem;
-  }
-`;
-
-const Video = styled.video`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const Content = styled.section`
-  padding: 0 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+`;
 
-  @media (min-width: 960px) and (max-width: 1199px) {
-    padding-left: 15%;
-  }
-  @media (min-width: 1200px) {
-    padding-left: 180px;
+const Contents = styled.div`
+  width: 35rem;
+  height: auto;
+  /* height: 100px; */
+  /* background-color: #fff5e1; */
+`;
+
+const ContentsTitle = styled.h1`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const Form = styled.div``;
+
+const Divider = styled.hr`
+  margin: 30px 0;
+  height: 1.2px;
+  padding: 0;
+  overflow: visible;
+  border: none;
+  color: #6e6d7a;
+  background-color: #6e6d7a;
+  text-align: center;
+  ::after {
+    display: inline-block;
+    position: relative;
+    top: -0.7rem;
+    font-size: 1.2rem;
+    background-color: #fff5e1;
+    padding: 0 1rem;
+    content: "or";
   }
 `;
 
-const AuthContent = styled.div`
-  max-width: 416px;
-  @media (min-width: 1200px) {
-    margin: 0 0 0;
-  }
+const ImageWrapper = styled.div`
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
 `;
 
-const AuthContentTitle = styled.h2`
-  font-size: 29px;
-  font-weight: 800;
-  margin-bottom: 40px;
+const Image = styled.img`
+  width: 100%;
 `;
 function LoginPage() {
   return (
     <Container>
-      <IconButton
-        Icon={FcGoogle}
-        iconPosition="left"
-        onClick={() => {}}
-        styleProps={{
-          icon: {},
-        }}
-      >
-        Google Login
-      </IconButton>
-      {/* <SideBar>
-        <Video></Video>
-      </SideBar>
-      <Content>
-        <AuthContent>
-          <AuthContentTitle />
-          <button></button>
-          <hr></hr>
-          <button></button>
-        </AuthContent>
-        <div>
-          <button></button>
-        </div>
-      </Content> */}
+      <Contents>
+        <ImageWrapper>
+          <Image src={LogoImage}></Image>
+        </ImageWrapper>
+        <ContentsTitle>Sign in to Page Note</ContentsTitle>
+        <Form>
+          <IconButton
+            Icon={FcGoogle}
+            onClick={() => {}}
+            styleProps={{
+              button: {
+                backgroundColor: "#1a1a1a",
+                width: "100%",
+                height: "4rem",
+              },
+              text: {
+                color: "#fff",
+                fontWeight: 800,
+                fontSize: "1.3rem",
+              },
+            }}
+          >
+            Signup with Google
+          </IconButton>
+          <Divider />
+          <IconButton
+            Icon={RiKakaoTalkFill}
+            onClick={() => {}}
+            styleProps={{
+              button: {
+                backgroundColor: "#fee500",
+                width: "100%",
+                height: "4rem",
+              },
+              text: {
+                color: "#1a1a1a",
+                fontWeight: 800,
+                fontSize: "1.3rem",
+              },
+            }}
+          >
+            Signup with Kakao
+          </IconButton>
+        </Form>
+        {/* <ImageWrapper></ImageWrapper> */}
+      </Contents>
     </Container>
-    // <div className={styles.login}>
-    //   <section className={styles["login--sidebar"]}>
-    //     <video autoPlay muted loop>
-    //       <source src="https://cdn.dribbble.com/uploads/48292/original/30fd1f7b63806eff4db0d4276eb1ac45.mp4?1689187515"></source>
-    //     </video>
-    //   </section>
-
-    //   <section className={styles["login--content"]}>
-    //     <div className={styles["auth--content"]}>
-    //       <h2 className={styles["auth--title"]}>Sign up to EveryNote</h2>
-    //       <IconButton
-    //         icon={FcGoogle}
-    //         iconPosition="left"
-    //         buttonSx={{
-    //           width: "100%",
-    //           height: "5.6rem",
-    //         }}
-    //       >
-    //         Sign up with Google
-    //       </IconButton>
-
-    //       <Divider content="or"></Divider>
-
-    //       <IconButton
-    //         icon={RiKakaoTalkFill}
-    //         iconPosition="left"
-    //         shape="round"
-    //         buttonSx={{
-    //           width: "100%",
-    //           height: "5.6rem",
-    //           backgroundColor: "#fee500",
-    //         }}
-    //         textSx={{ color: "#000" }}
-    //       >
-    //         Sign up with Kakao
-    //       </IconButton>
-    //     </div>
-    //     <div>
-    //       <Button
-    //         onClick={() => {
-    //           navigate("/");
-    //         }}
-    //         buttonSx={{
-    //           marginTop: "2rem",
-    //           backgroundColor: "white",
-    //         }}
-    //         textSx={{
-    //           color: "#000",
-    //         }}
-    //       >
-    //         Go Home{" "}
-    //       </Button>
-    //     </div>
-    //   </section>
-    // </div>
   );
 }
 

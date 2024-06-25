@@ -6,7 +6,7 @@ import Folder from "../components/Folder";
 
 const HomeContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: calc(100vh - 6rem);
   background-color: #fff5e1;
 `;
 

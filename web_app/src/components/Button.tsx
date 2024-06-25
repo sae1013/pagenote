@@ -15,10 +15,11 @@ interface StyledButtonProps {
 }
 
 interface StyledIconButtonProps extends StyledButtonProps {
-  iconPosition: "left" | "right";
+  iconPosition?: "left" | "right";
   styleProps?: {
     button?: React.CSSProperties;
     icon?: React.CSSProperties;
+    text?: React.CSSProperties;
   };
 }
 interface ButtonProps extends StyledButtonProps {
