@@ -5,6 +5,7 @@
   "license": "MIT",
   "workspaces": [
     "web_app",
-    "chrome_app"
+    "chrome_app",
+    "server"
   ]
 }

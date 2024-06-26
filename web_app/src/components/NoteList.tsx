@@ -11,7 +11,7 @@ const ListTitle = styled.h1`
   margin: 1rem;
 `;
 
-const ListContainer = styled.div`
+const ListContainer = styled.ul`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
@@ -19,24 +19,54 @@ const ListContainer = styled.div`
   padding: 0 1rem;
 `;
 
-function NoteList() {
+const ItemContainer = styled.li`
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+  cursor: pointer;
+  height: 240px;
+`;
+interface NoteListProps {
+  data: any[];
+  isLoading: boolean;
+}
+
+const ItemTitle = styled.h1``;
+const ImageWrapper = styled.div``;
+const Image = styled.img``;
+function NoteList({ data }: NoteListProps) {
   return (
-    <div>
+    <>
       <ListTitle>My Notes</ListTitle>
       <ListContainer>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
-        <NoteItem></NoteItem>
+        {data?.map((item) => {
+          return (
+            <ItemContainer>
+              <ImageWrapper>
+                <Image src=""></Image>
+              </ImageWrapper>
+              <ItemTitle>{item.titme}</ItemTitle>
+            </ItemContainer>
+          );
+        })}
       </ListContainer>
-    </div>
+    </>
   );
+  // <div>
+  //   <ListTitle>My Notes</ListTitle>
+  //   <ListContainer>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //     <NoteItem></NoteItem>
+  //   </ListContainer>
+  // </div>
 }
 
 export default NoteList;
