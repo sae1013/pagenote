@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React from "react";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import NoteItem from "./NoteItem";
 
 const ListTitle = styled.h1`
   font-size: 2rem;
@@ -14,59 +12,68 @@ const ListTitle = styled.h1`
 const ListContainer = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(13em, 1fr));
   grid-gap: 2rem;
   padding: 0 1rem;
 `;
 
-const ItemContainer = styled.li`
+const ItemContainer = styled.li<{ backgroundImageUrl: string }>`
   border-radius: 1rem;
   overflow: hidden;
+  padding-bottom: 56.25%;
   background-color: #fff;
+  background: url(${(props) => props.backgroundImageUrl}) center/cover no-repeat;
   cursor: pointer;
-  height: 240px;
+  position: relative;
 `;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+`;
+
 interface NoteListProps {
   data: any[];
   isLoading: boolean;
 }
 
-const ItemTitle = styled.h1``;
-const ImageWrapper = styled.div``;
-const Image = styled.img``;
+const ItemTitle = styled.h1`
+  padding-top: 0.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #fff;
+`;
+const ImageWrapper = styled.div`
+  margin: 0 auto;
+  width: 50%;
+  padding-bottom: 56.25%;
+`;
+const Image = styled.img`
+  width: 100%;
+`;
 function NoteList({ data }: NoteListProps) {
   return (
     <>
       <ListTitle>My Notes</ListTitle>
       <ListContainer>
         {data?.map((item) => {
+          console.log(item);
           return (
-            <ItemContainer>
-              <ImageWrapper>
-                <Image src=""></Image>
-              </ImageWrapper>
-              <ItemTitle>{item.titme}</ItemTitle>
+            <ItemContainer backgroundImageUrl={item.imageUrl}>
+              <Overlay>
+                <ItemTitle>{item.title}</ItemTitle>
+              </Overlay>
             </ItemContainer>
           );
         })}
       </ListContainer>
     </>
   );
-  // <div>
-  //   <ListTitle>My Notes</ListTitle>
-  //   <ListContainer>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //     <NoteItem></NoteItem>
-  //   </ListContainer>
-  // </div>
 }
 
 export default NoteList;
