@@ -10,7 +10,7 @@ import LogoImage from "../assets/logo.png";
 const Container = styled.div`
   max-width: 100%;
   height: 100vh;
-  background-color: #fff5e1;
+  background-color: ${(props) => props.theme.colors.bg.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@ const Contents = styled.div`
   width: 35rem;
   height: auto;
   /* height: 100px; */
-  /* background-color: #fff5e1; */
+  /* background-color: ${(props) => props.theme.colors.bg.primary}; */
 `;
 
 const ContentsTitle = styled.h1`
@@ -45,7 +45,7 @@ const Divider = styled.hr`
     position: relative;
     top: -0.7rem;
     font-size: 1.2rem;
-    background-color: #fff5e1;
+    background-color: ${(props) => props.theme.colors.bg.primary};
     padding: 0 1rem;
     content: "or";
   }

@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
-  background-color: #fff5e1;
+  background-color: ${props => props.theme.colors.bg.primary};
   height: 6rem;
   display: flex;
   align-items: center;

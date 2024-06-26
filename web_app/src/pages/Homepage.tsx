@@ -14,7 +14,7 @@ import axios from "axios";
 const HomeContainer = styled.div`
   width: 100%;
   height: calc(100vh - 6rem);
-  background-color: #fff5e1;
+  background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 const HomeMain = styled.div`
@@ -33,7 +33,7 @@ const SideBar = styled.section`
 const Contents = styled.section`
   padding: 1rem;
   flex: 1;
-  background-color: yellow;
+  background-color: ${(props) => props.theme.colors.bg.primary};
   overflow-y: scroll;
 `;
 
