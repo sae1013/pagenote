@@ -27,7 +27,7 @@ const HomeMain = styled.div`
 const SideBar = styled.section`
   width: 300px;
   height: calc(100vh - 6rem);
-  background-color: blue;
+  /* background-color: blue; */
 `;
 
 const Contents = styled.section`

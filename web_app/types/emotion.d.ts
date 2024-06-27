@@ -7,8 +7,11 @@ declare module "@emotion/react" {
       secondary: string;
       bg: {
         primary: string;
+        black: string;
       };
-      text: {};
+      text: {
+        black: string;
+      };
     };
     fonts: {
       body: string;
