@@ -7,7 +7,6 @@ import { googleOauthUser } from './types/google-oauth.user';
 
 @Injectable()
 export class AuthService {
-  //   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
   constructor(private readonly usersService: UsersService) {}
 
   async validate(user: googleOauthUser) {
@@ -24,6 +23,7 @@ export class AuthService {
         lastLogin: new Date(),
       });
     }
+
     if (existUser.channel != 'google') {
       throw new UnauthorizedException(
         '이미 다른 채널을 통해 가입된 계정입니다.',

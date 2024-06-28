@@ -26,7 +26,6 @@ export class UsersController {
 
   @Get()
   findAll() {
-    console.log(this.configService.get('GOOGLE_OAUTH_CLIENT_ID'));
     return this.usersService.findAll();
   }
 

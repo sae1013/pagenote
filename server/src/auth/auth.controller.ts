@@ -32,7 +32,7 @@ export class AuthController {
   @Render('login-success')
   async googleAuthRedirect(@Req() req, @Res() res) {
     const { jwt, ...user } = req.user;
-    return { user: { user, jwt } };
+    return { user: JSON.stringify({ user, jwt }) };
   }
 
   @Get('logout')

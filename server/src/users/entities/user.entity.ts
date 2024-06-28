@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+@Schema()
 export class User extends Document {
   @Prop({ required: true })
   email: string;
@@ -17,10 +18,10 @@ export class User extends Document {
   @Prop()
   status: string;
 
-  @Prop()
+  @Prop({ default: Date.now })
   createdAt: Date;
 
-  @Prop()
+  @Prop({ default: Date.now })
   lastLogin: Date;
 }
 

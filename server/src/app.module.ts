@@ -21,7 +21,7 @@ import { UsersController } from './users/users.controller';
       validationSchema: Joi.object({
         GOOGLE_OAUTH_CLIENT_ID: Joi.string().required(),
         GOOGLE_OAUTH_SECRET_KEY: Joi.string().required(),
-        JWT_KEY: Joi.string().required(),
+        JWT_SECRET_KEY: Joi.string().required(),
         AES_ENCRYPT_KEY: Joi.string().required(),
       }),
     }),

@@ -7,8 +7,8 @@
       window.onload = () => { const user = '{{{user}}}'; const status = '{{{status}}}';
       const errorMessage = '{{{errorMessage}}}'; const successMessage = '{{{successMessage}}}';
       const targetOrigin = "http://localhost:3000"; const response =
-      JSON.stringify({ user,status,errorMessage,successMessage });
-      window.opener.postMessage(response,targetOrigin); window.close(); }
+      JSON.stringify(user); window.opener.postMessage(response,targetOrigin);
+      window.close(); }
 
     </script>
   </body>

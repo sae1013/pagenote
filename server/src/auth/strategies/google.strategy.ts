@@ -48,6 +48,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     const jwt = sign(jwtPayload, process.env.JWT_SECRET_KEY, {
       expiresIn: '72h',
     });
+    ``;
     done(null, { jwt, user: verifiedUser });
   }
 }
