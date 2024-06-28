@@ -10,11 +10,14 @@ import {
 import { NotesService } from './notes.service';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
+import { UseGuards } from '@nestjs/common';
 @Controller('notes')
 export class NotesController {
   constructor(private readonly notesService: NotesService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   create(@Body() data: CreateNoteDto) {
     return this.notesService.create(data);
   }
@@ -23,7 +26,9 @@ export class NotesController {
   update(@Body() data: UpdateNoteDto) {
     this.notesService.updateNote(data);
   }
+
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.notesService.findAll();
   }
