@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import { IconButton } from "../components/Button";
 import { Button } from "../components/Button";
 import LogoImage from "../assets/logo.png";
+import { openCenteredPopup } from "../utils/utils";
 
 const Container = styled.div`
   max-width: 100%;
@@ -62,6 +63,45 @@ const Image = styled.img`
   width: 100%;
 `;
 function LoginPage() {
+  
+  const handleGoogleLogin = () => {
+    const googleOauthParams = new URLSearchParams({
+      access_type: 'offline',
+      prompt: 'consent',
+      response_type: 'code',
+      redirect_uri: 'http://localhost:8000/auth/google/callback',
+      scope: 'email profile',
+      client_id: process.env.VITE_GOOGLE_OAUTH_CLIENT_ID as string,
+      service: 'lso',
+      o2v: '2',
+      theme: 'glif',
+      flowName: 'GeneralOAuthFlow'
+    });
+    
+    const googleOauthUrl = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?${googleOauthParams.toString()}`;
+    
+    openCenteredPopup(googleOauthUrl as string,"GOOGLE LOGIN",600,400)
+  }
+  const handleReceiveMessage = (event: MessageEvent) => {
+    if (event.origin === "http://localhost:3000") return;
+    const res = JSON.parse(event.data);
+    console.log('결과',res)
+    // if (parseInt(status) != 200) {
+    //   // TODO!: Error Popup 띄워주세요.
+    //   return;
+    // }
+    // console.log(user)
+    // // TODO!: Greeting Toast message 띄워주세요.
+    // // setUser(user);
+    // // router.push("/");
+  };
+  useEffect(() => {
+    window.addEventListener("message", handleReceiveMessage);
+    return () => {
+      window.removeEventListener("message", handleReceiveMessage);
+    };
+  }, []);
+
   return (
     <Container>
       <Contents>
@@ -72,7 +112,7 @@ function LoginPage() {
         <Form>
           <IconButton
             Icon={FcGoogle}
-            onClick={() => {}}
+            onClick={handleGoogleLogin}
             styleProps={{
               button: {
                 backgroundColor: "#1a1a1a",
