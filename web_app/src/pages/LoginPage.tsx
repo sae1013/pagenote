@@ -7,6 +7,8 @@ import { IconButton } from "../components/Button";
 import { Button } from "../components/Button";
 import LogoImage from "../assets/logo.png";
 import { openCenteredPopup } from "../utils/utils";
+import { useAtom } from "jotai";
+import { userAtom } from "../atoms/userAtom";
 
 const Container = styled.div`
   max-width: 100%;
@@ -63,38 +65,30 @@ const Image = styled.img`
   width: 100%;
 `;
 function LoginPage() {
-  
+  const [user, setUserAtom] = useAtom(userAtom);
+
   const handleGoogleLogin = () => {
     const googleOauthParams = new URLSearchParams({
-      access_type: 'offline',
-      prompt: 'consent',
-      response_type: 'code',
-      redirect_uri: 'http://localhost:8000/auth/google/callback',
-      scope: 'email profile',
+      access_type: "offline",
+      prompt: "consent",
+      response_type: "code",
+      redirect_uri: "http://localhost:8000/auth/google/callback",
+      scope: "email profile",
       client_id: process.env.VITE_GOOGLE_OAUTH_CLIENT_ID as string,
-      service: 'lso',
-      o2v: '2',
-      theme: 'glif',
-      flowName: 'GeneralOAuthFlow'
+      service: "lso",
+      o2v: "2",
+      theme: "glif",
+      flowName: "GeneralOAuthFlow",
     });
-    
+
     const googleOauthUrl = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?${googleOauthParams.toString()}`;
-    
-    openCenteredPopup(googleOauthUrl as string,"GOOGLE LOGIN",600,400)
-  }
+
+    openCenteredPopup(googleOauthUrl as string, "GOOGLE LOGIN", 600, 400);
+  };
   const handleReceiveMessage = (event: MessageEvent) => {
     if (event.origin === "http://localhost:3000") return;
     const res = JSON.parse(event.data);
-    console.log('결과',res)
-    
-    // if (parseInt(status) != 200) {
-    //   // TODO!: Error Popup 띄워주세요.
-    //   return;
-    // }
-    // console.log(user)
-    // // TODO!: Greeting Toast message 띄워주세요.
-    // // setUser(user);
-    // // router.push("/");
+    const { email, status, channel, jwt } = res.user;
   };
   useEffect(() => {
     window.addEventListener("message", handleReceiveMessage);
