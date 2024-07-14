@@ -86,6 +86,7 @@ function LoginPage() {
     if (event.origin === "http://localhost:3000") return;
     const res = JSON.parse(event.data);
     console.log('결과',res)
+    
     // if (parseInt(status) != 200) {
     //   // TODO!: Error Popup 띄워주세요.
     //   return;

@@ -7,6 +7,7 @@ import { jwtPayload } from '../types/auth-guard';
 import { UsersService } from 'src/users/users.service';
 
 // Guard를 직접 구현해도 됨
+// jwt 토큰을 인증할때 쓰이는 strategy. 매 API 요청시, 아래 validate를 타도록 해야함.
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -14,18 +15,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly usersService: UsersService,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        (request: any) => {
-          return request?.cookies?.['accessToken'] || request?.['accessToken'];
-        },
-      ]),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: configService.get('JWT_SECRET_KEY'),
     });
   }
 
   async validate({ email }: jwtPayload) {
+    console.log('valified email', email);
     const user = await this.usersService.findOne(email);
-    if (!user) throw UnauthorizedException;
+    if (!user) throw new UnauthorizedException();
     return user;
   }
 }
