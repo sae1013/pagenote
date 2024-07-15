@@ -15,13 +15,20 @@ import { UsersService } from 'src/users/users.service';
 import { CurrentUser } from './decorators/currentUser.decorator';
 import { User } from 'src/users/entities/user.entity';
 import { googleOauthUser } from './types/google-oauth.user';
-
+import { JwtAuthGuard } from './guards/jwt.auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly usersService: UsersService,
   ) {}
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  authUser(@CurrentUser() user, @Req() req, @Res() res) {
+    console.log('user', user);
+    res.status(200).json({ user });
+  }
 
   @Get('google')
   @UseGuards(AuthGuard('google'))

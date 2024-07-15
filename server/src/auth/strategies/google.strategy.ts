@@ -42,11 +42,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       firstName: name.givenName,
       lastName: name.familyName,
     };
-
     const verifiedUser = await this.authService.validate(user);
     const jwtPayload = { email: verifiedUser.email, refreshToken };
     const jwt = sign(jwtPayload, process.env.JWT_SECRET_KEY, {
-      expiresIn: '72h',
+      expiresIn: '24h',
     });
     ``;
     done(null, { jwt, user: verifiedUser });

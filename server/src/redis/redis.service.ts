@@ -12,7 +12,6 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
       //   password: 'hergfdfggfdg',
       retryStrategy: (times) => Math.min(times * 50, 2000),
     };
-
     this.client = new Redis(options);
   }
 
